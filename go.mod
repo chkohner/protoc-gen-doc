@@ -10,6 +10,7 @@ require (
 	github.com/envoyproxy/protoc-gen-validate v0.3.0-java
 	github.com/gogo/protobuf v1.1.1 // indirect
 	github.com/golang/protobuf v1.4.2
+	github.com/gomarkdown/markdown v0.0.0-20210514010506-3b9f47219fe7
 	github.com/google/uuid v0.0.0-20161128191214-064e2069ce9c // indirect
 	github.com/huandu/xstrings v1.0.0 // indirect
 	github.com/imdario/mergo v0.3.4 // indirect

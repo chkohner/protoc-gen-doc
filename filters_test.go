@@ -49,3 +49,15 @@ func TestNoBrFilter(t *testing.T) {
 		require.Equal(t, output, NoBrFilter(input))
 	}
 }
+
+func TestMarkdownToHTML(t *testing.T) {
+	tests := map[string]string{
+		"Some paragraph.":             "<p>Some paragraph.</p>\n",
+		"A.\n\n- B\n- C\n\nD.":        "<p>A.</p>\n\n<ul>\n<li>B</li>\n<li>C</li>\n</ul>\n\n<p>D.</p>\n",
+		"A [link](https://foo) test.": "<p>A <a href=\"https://foo\">link</a> test.</p>\n",
+	}
+
+	for input, output := range tests {
+		require.Equal(t, html.HTML(output), MarkdownToHTML(input))
+	}
+}

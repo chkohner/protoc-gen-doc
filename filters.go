@@ -5,6 +5,10 @@ import (
 	"html/template"
 	"regexp"
 	"strings"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/html"
+	"github.com/gomarkdown/markdown/parser"
 )
 
 var (
@@ -35,4 +39,12 @@ func NoBrFilter(content string) string {
 		paragraphs[i] = spacePattern.ReplaceAllString(withoutLF, " ")
 	}
 	return strings.Join(paragraphs, "\n\n")
+}
+
+func MarkdownToHTML(content string) template.HTML {
+	p := parser.NewWithExtensions(parser.CommonExtensions | parser.Autolink)
+	r := html.NewRenderer(html.RendererOptions{
+		Flags: html.CommonFlags,
+	})
+	return template.HTML(markdown.ToHTML([]byte(content), p, r))
 }
